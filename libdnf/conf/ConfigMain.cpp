@@ -230,6 +230,7 @@ class ConfigMain::Impl {
     OptionBool install_weak_deps{true};
     OptionString bugtracker_url{BUGTRACKER};
     OptionBool zchunk{true};
+    OptionEnum<std::string> reboot{"never", {"never", "on-change"}};
 
     OptionEnum<std::string> color{"auto", {"auto", "never", "always"},
         [](const std::string & value){
@@ -424,6 +425,7 @@ ConfigMain::Impl::Impl(Config & owner)
     owner.optBinds().add("install_weak_deps", install_weak_deps);
     owner.optBinds().add("bugtracker_url", bugtracker_url);
     owner.optBinds().add("zchunk", zchunk);
+    owner.optBinds().add("reboot", reboot);
     owner.optBinds().add("color", color);
     owner.optBinds().add("color_list_installed_older", color_list_installed_older);
     owner.optBinds().add("color_list_installed_newer", color_list_installed_newer);
@@ -572,6 +574,7 @@ OptionBool & ConfigMain::install_weak_deps() { return pImpl->install_weak_deps; 
 OptionString & ConfigMain::bugtracker_url() { return pImpl->bugtracker_url; }
 OptionBool & ConfigMain::zchunk() { return pImpl->zchunk; }
 OptionEnum<std::string> & ConfigMain::color() { return pImpl->color; }
+OptionEnum<std::string> & ConfigMain::reboot() { return pImpl->reboot; }
 OptionString & ConfigMain::color_list_installed_older() { return pImpl->color_list_installed_older; }
 OptionString & ConfigMain::color_list_installed_newer() { return pImpl->color_list_installed_newer; }
 OptionString & ConfigMain::color_list_installed_reinstall() { return pImpl->color_list_installed_reinstall; }
